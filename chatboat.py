@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
 import google.generativeai as genai
@@ -87,6 +87,11 @@ Provide a helpful response:"""
     except Exception as e:
         return f"I apologize, but I encountered an error: {str(e)}"
 
+@app.route('/')
+def index():
+    """Render the chat interface with UI"""
+    return render_template('index.html')
+
 @app.route('/api/chat', methods=['POST'])
 def chat():
     """Main chat endpoint"""
@@ -147,17 +152,20 @@ def health_check():
     """Health check endpoint"""
     return jsonify({'status': 'healthy', 'timestamp': datetime.now().isoformat()})
 
-@app.route('/', methods=['GET'])
-def index():
-    """Root endpoint"""
+@app.route('/api/info', methods=['GET'])
+def api_info():
+    """API information endpoint"""
     return jsonify({
-        'name': 'AI Chatbot API',
+        'name': 'CodeAlpha AI Chatbot',
         'version': '1.0.0',
+        'description': 'AI Chatbot using Flask and Gemini API',
         'endpoints': {
+            'GET /': 'Render chat interface',
             'POST /api/chat': 'Send a message and get AI response',
             'GET /api/history': 'Get conversation history',
             'POST /api/clear': 'Clear conversation history',
-            'GET /api/health': 'Health check'
+            'GET /api/health': 'Health check',
+            'GET /api/info': 'API information'
         }
     })
 
