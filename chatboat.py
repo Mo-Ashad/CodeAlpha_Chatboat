@@ -87,6 +87,14 @@ Provide a helpful response:"""
     except Exception as e:
         return f"I apologize, but I encountered an error: {str(e)}"
 
+<<<<<<< HEAD
+=======
+@app.route('/')
+def index():
+    """Render the chat interface with UI"""
+    return render_template('index.html')
+
+>>>>>>> 63000d622693bb0a577ed8a488a2164b57559702
 @app.route('/api/chat', methods=['POST'])
 def chat():
     """Main chat endpoint"""
@@ -147,9 +155,28 @@ def health_check():
     """Health check endpoint"""
     return jsonify({'status': 'healthy', 'timestamp': datetime.now().isoformat()})
 
+<<<<<<< HEAD
 @app.route('/')
 def index():
     return render_template('index.html')
+=======
+@app.route('/api/info', methods=['GET'])
+def api_info():
+    """API information endpoint"""
+    return jsonify({
+        'name': 'CodeAlpha AI Chatbot',
+        'version': '1.0.0',
+        'description': 'AI Chatbot using Flask and Gemini API',
+        'endpoints': {
+            'GET /': 'Render chat interface',
+            'POST /api/chat': 'Send a message and get AI response',
+            'GET /api/history': 'Get conversation history',
+            'POST /api/clear': 'Clear conversation history',
+            'GET /api/health': 'Health check',
+            'GET /api/info': 'API information'
+        }
+    })
+>>>>>>> 63000d622693bb0a577ed8a488a2164b57559702
 
 if __name__ == '__main__':
     # Parse DEBUG from environment into a boolean (handles 'True'/'False' strings)
