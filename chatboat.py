@@ -21,7 +21,7 @@ if not GEMINI_API_KEY:
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Initialize Gemini model
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.5-flash")
 # Chat history and conversation context
 conversation_history = []
 max_history_length = 10
@@ -87,14 +87,8 @@ Provide a helpful response:"""
     except Exception as e:
         return f"I apologize, but I encountered an error: {str(e)}"
 
-<<<<<<< HEAD
-=======
-@app.route('/')
-def index():
-    """Render the chat interface with UI"""
-    return render_template('index.html')
 
->>>>>>> 63000d622693bb0a577ed8a488a2164b57559702
+
 @app.route('/api/chat', methods=['POST'])
 def chat():
     """Main chat endpoint"""
@@ -155,11 +149,11 @@ def health_check():
     """Health check endpoint"""
     return jsonify({'status': 'healthy', 'timestamp': datetime.now().isoformat()})
 
-<<<<<<< HEAD
+
 @app.route('/')
 def index():
     return render_template('index.html')
-=======
+
 @app.route('/api/info', methods=['GET'])
 def api_info():
     """API information endpoint"""
@@ -176,7 +170,7 @@ def api_info():
             'GET /api/info': 'API information'
         }
     })
->>>>>>> 63000d622693bb0a577ed8a488a2164b57559702
+
 
 if __name__ == '__main__':
     # Parse DEBUG from environment into a boolean (handles 'True'/'False' strings)
