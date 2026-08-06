@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 from datetime import datetime
 
-
 load_dotenv()
 
 app = Flask(__name__)
